@@ -1,0 +1,25 @@
+:root {
+  --background-color: #000;
+  --background-color-1: #2f2e2e;
+  --background-color-2: #424242;
+  color: #ffffff;
+  --invert-color: #000;
+}
+
+body {
+  margin: 0;
+  font-family: "MyCustomFont", sans-serif;
+}
+
+:root .light-mode {
+  --background-color: #fff;
+  --background-color-1: #dbdbdb;
+  --background-color-2: #cccbcb;
+  color: #000;
+  --invert-color: #ffffff;
+}
+
+@font-face {
+  font-family: "MyCustomFont";
+  src: url("./assets/fonts/jetbrains-mono/jetbrains-mono-variable.ttf");
+}

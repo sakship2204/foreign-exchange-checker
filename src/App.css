@@ -1,0 +1,44 @@
+.app-container {
+  background-color: var(--background-color);
+}
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.4rem;
+}
+
+.right-actions {
+  display: flex;
+  gap: 1rem;
+  font-size: small;
+  font-weight: 100;
+}
+
+.live-market {
+  color: var(--invert-color);
+  background-color: rgba(255, 255, 0, 0.945);
+  padding: 1rem;
+  font-weight: bold;
+  position: sticky;
+}
+
+.nav-bottom {
+  display: flex;
+}
+
+.live-data {
+  flex: 1;
+  overflow-x: auto;
+  background-color: var(--background-color-1);
+}
+
+.main-container {
+  max-width: calc(100% - 40rem);
+  margin: 2rem auto;
+  font-size: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
