@@ -1,0 +1,13 @@
+.tabHeaderBar {
+  display: inline-flex;
+  gap: 1rem;
+}
+
+span {
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.selected {
+  border-bottom: 3px solid yellowgreen;
+}

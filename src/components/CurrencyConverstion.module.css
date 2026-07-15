@@ -1,0 +1,15 @@
+.container {
+  background-color: var(--background-color-1);
+  border-radius: 1.6rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+.main {
+  gap: 0.8rem;
+}
+button {
+  background-color: var(--background-color-2);
+  box-shadow: none;
+  border-radius: 0.4rem;
+}

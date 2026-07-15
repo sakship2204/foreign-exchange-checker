@@ -4,6 +4,7 @@ import logo from "./assets/images/logo.svg";
 import { CurrencyConversion } from "./components/CurrencyConversion";
 import React from "react";
 import PercentageIndicator from "./components/PercentageIndicator";
+import { AdditionalFunctionalities } from "./components/Additionals/AdditionalFunctionalities";
 
 type LiveRateData = {
   date: string;
@@ -14,6 +15,7 @@ type LiveRateData = {
 };
 function App() {
   const [currentRates, setCurrentRates] = useState([]);
+  const [numOfCurrencies, setNumOfCurrencies] = useState([]);
 
   useEffect(() => {
     fetchCurrentRates();
@@ -29,7 +31,7 @@ function App() {
   function calculatePercentage(value: number, total: number, decimals = 2) {
     if (total === 0) return 0;
     const percentage = (value / total) * 100;
-    console.log(percentage);
+
     return Number(percentage.toFixed(decimals));
   }
 
@@ -62,6 +64,7 @@ function App() {
 
       const data = await response.json();
       setCurrentRates(data);
+      setNumOfCurrencies(data.length);
 
       const ratesData = await Promise.all(
         data.map(async (item: LiveRateData) => {
@@ -82,7 +85,7 @@ function App() {
         <section className="nav-bar">
           <img src={logo} alt="FX Checker" />
           <div className="right-actions">
-            <li>55 CURRENCIES</li>
+            <li>{numOfCurrencies} CURRENCIES</li>
             <li>EOD</li>
             <li>ECB DATA</li>
           </div>
@@ -107,6 +110,8 @@ function App() {
         <section className="main-container">
           <div>CHECK THE RATE</div>
           <CurrencyConversion />
+
+          <AdditionalFunctionalities />
         </section>
       </div>
     </>

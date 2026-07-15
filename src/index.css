@@ -1,7 +1,7 @@
 :root {
   --background-color: #000;
   --background-color-1: #2f2e2e;
-  --background-color-2: #424242;
+  --background-color-2: #535353;
   color: #ffffff;
   --invert-color: #000;
   --red-color: red;
@@ -16,7 +16,7 @@ body {
 :root .light-mode {
   --background-color: #fff;
   --background-color-1: #dbdbdb;
-  --background-color-2: #cccbcb;
+  --background-color-2: #b2b2b2;
   color: #000;
   --invert-color: #ffffff;
 }
@@ -28,4 +28,13 @@ body {
 
 .w-fit {
   min-width: fit-content;
+}
+
+.v-center {
+  display: flex;
+  align-items: center;
+}
+
+.sb {
+  justify-content: space-between;
 }

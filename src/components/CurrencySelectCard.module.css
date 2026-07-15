@@ -1,0 +1,12 @@
+.container {
+  background-color: var(--background-color-2);
+  border-radius: 1rem;
+  padding: 1rem;
+  flex: 1 0 0;
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
