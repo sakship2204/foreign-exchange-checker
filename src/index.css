@@ -4,6 +4,8 @@
   --background-color-2: #424242;
   color: #ffffff;
   --invert-color: #000;
+  --red-color: red;
+  --green-color: green;
 }
 
 body {
@@ -22,4 +24,8 @@ body {
 @font-face {
   font-family: "MyCustomFont";
   src: url("./assets/fonts/jetbrains-mono/jetbrains-mono-variable.ttf");
+}
+
+.w-fit {
+  min-width: fit-content;
 }

@@ -22,17 +22,48 @@
   padding: 1rem;
   font-weight: bold;
   position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .nav-bottom {
   display: flex;
 }
-
 .live-data {
   flex: 1;
-  overflow-x: auto;
+  overflow: auto;
   background-color: var(--background-color-1);
+
+  scrollbar-width: none;
 }
+
+.live-data-track {
+  display: flex;
+  gap: 0.5rem;
+  padding: 1rem;
+  flex-wrap: nowrap;
+  font-size: small;
+  width: max-content;
+  /* auto scroll styling from here */
+  animation: auto-scroll 120s linear infinite;
+}
+
+/* 3. Define the keyframes to move exactly half the width */
+@keyframes auto-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.live-data:hover .live-data-track {
+  animation-play-state: paused;
+}
+
+/* auto scrolling ends here */
 
 .main-container {
   max-width: calc(100% - 40rem);
