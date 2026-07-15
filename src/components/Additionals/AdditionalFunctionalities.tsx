@@ -11,7 +11,7 @@ export const AdditionalFunctionalities = () => {
         {availableTabs.map((tab) => (
           <span
             key={tab}
-            className={selectedTab == tab && classes.selected}
+            className={`${classes.tabTitle}  ${selectedTab == tab && classes.selected}`}
             tabIndex={1}
             onClick={() => setSelectedTab(tab)}
           >

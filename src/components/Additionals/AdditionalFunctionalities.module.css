@@ -3,7 +3,7 @@
   gap: 1rem;
 }
 
-span {
+.tabTitle {
   padding: 1rem;
   cursor: pointer;
 }
