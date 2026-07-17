@@ -1,11 +1,13 @@
 .tabHeaderBar {
   display: inline-flex;
   gap: 1rem;
+  border-bottom: 1px solid rgb(179, 178, 178);
 }
 
 .tabTitle {
   padding: 1rem;
   cursor: pointer;
+  font-size: medium;
 }
 
 .selected {

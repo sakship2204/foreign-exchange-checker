@@ -45,7 +45,7 @@
   font-size: small;
   width: max-content;
   /* auto scroll styling from here */
-  animation: auto-scroll 120s linear infinite;
+  animation: auto-scroll 180s linear infinite;
 }
 
 /* 3. Define the keyframes to move exactly half the width */

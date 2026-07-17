@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import "./App.css";
-import logo from "./assets/images/logo.svg";
+import logo from "/public/images/logo.svg";
 import { CurrencyConversion } from "./components/CurrencyConversion";
 import React from "react";
 import PercentageIndicator from "./components/PercentageIndicator";
 import { AdditionalFunctionalities } from "./components/Additionals/AdditionalFunctionalities";
+import { useDispatch } from "react-redux";
+import { setRatesData } from "./store/converstion";
 
 type LiveRateData = {
   date: string;
@@ -16,6 +18,8 @@ type LiveRateData = {
 function App() {
   const [currentRates, setCurrentRates] = useState([]);
   const [numOfCurrencies, setNumOfCurrencies] = useState([]);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     fetchCurrentRates();
@@ -64,6 +68,8 @@ function App() {
 
       const data = await response.json();
       setCurrentRates(data);
+
+      dispatch(setRatesData(data));
       setNumOfCurrencies(data.length);
 
       const ratesData = await Promise.all(

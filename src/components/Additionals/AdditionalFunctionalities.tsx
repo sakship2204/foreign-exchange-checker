@@ -1,5 +1,6 @@
 import { useState } from "react";
 import classes from "./AdditionalFunctionalities.module.css";
+import { History } from "./History";
 
 export const AdditionalFunctionalities = () => {
   const availableTabs = ["History", "Compare", "Favorite", "Logs"];
@@ -15,10 +16,11 @@ export const AdditionalFunctionalities = () => {
             tabIndex={1}
             onClick={() => setSelectedTab(tab)}
           >
-            {tab}
+            {tab.toUpperCase()}
           </span>
         ))}
       </div>
+      {selectedTab === "History" && <History />}
     </>
   );
 };

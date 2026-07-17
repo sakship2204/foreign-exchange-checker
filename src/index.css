@@ -2,7 +2,12 @@
   --background-color: #000;
   --background-color-1: #2f2e2e;
   --background-color-2: #535353;
+  --background-color-3: #636363;
+
   color: #ffffff;
+
+  --color: #fff;
+  --color-1: #b1afaf;
   --invert-color: #000;
   --red-color: red;
   --green-color: green;
@@ -17,6 +22,7 @@ body {
   --background-color: #fff;
   --background-color-1: #dbdbdb;
   --background-color-2: #b2b2b2;
+  --background-color-3: #rgb(144, 142, 142);
   color: #000;
   --invert-color: #ffffff;
 }
@@ -37,4 +43,15 @@ body {
 
 .sb {
   justify-content: space-between;
+}
+
+.customBtn {
+  padding: 0.8rem 1rem;
+  background-color: var(--background-color-3);
+  box-shadow: none;
+  box-sizing: content-box;
+  border: 0.1px solid var(--color-1);
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
 }

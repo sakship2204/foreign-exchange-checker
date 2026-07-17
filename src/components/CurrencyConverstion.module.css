@@ -6,10 +6,29 @@
   flex-direction: column;
 }
 .main {
-  gap: 0.8rem;
+  gap: 1rem;
 }
 button {
   background-color: var(--background-color-2);
   box-shadow: none;
   border-radius: 0.4rem;
+}
+
+.footer {
+  border-top: 1px dashed rgb(151, 149, 149);
+
+  margin: 1rem -1rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  padding: 1rem 1rem 0;
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+}
+.buttons button {
+  gap: 0.5rem;
 }
