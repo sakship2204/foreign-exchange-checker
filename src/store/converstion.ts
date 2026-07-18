@@ -9,6 +9,7 @@ const currencyConversionSlice = createSlice({
     receiveValue: "",
     conversionRate: "",
     ratesData: [],
+    rateDate: "",
   },
   reducers: {
     setSend(state, action) {
@@ -31,8 +32,9 @@ const currencyConversionSlice = createSlice({
       state.ratesData = action.payload;
     },
 
-    setConversionRate(state, action) {
-      state.conversionRate = action.payload;
+    setConversionRateAndDate(state, action) {
+      state.conversionRate = action.payload.rate;
+      state.rateDate = action.payload.date;
     },
 
     toggleSendReceive(state) {
@@ -53,5 +55,5 @@ export const {
   setSendValue,
   setReceive,
   toggleSendReceive,
-  setConversionRate,
+  setConversionRateAndDate,
 } = currencyConversionSlice.actions;

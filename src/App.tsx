@@ -1,4 +1,4 @@
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import logo from "/public/images/logo.svg";
 import { CurrencyConversion } from "./components/CurrencyConversion";
@@ -7,14 +7,8 @@ import PercentageIndicator from "./components/PercentageIndicator";
 import { AdditionalFunctionalities } from "./components/Additionals/AdditionalFunctionalities";
 import { useDispatch } from "react-redux";
 import { setRatesData } from "./store/converstion";
+import { get24hRateChange, type LiveRateData } from "./services/util";
 
-type LiveRateData = {
-  date: string;
-  rate: string;
-  base: string;
-  quote: string;
-  percentageChange?: string;
-};
 function App() {
   const [currentRates, setCurrentRates] = useState([]);
   const [numOfCurrencies, setNumOfCurrencies] = useState([]);
@@ -25,43 +19,6 @@ function App() {
     fetchCurrentRates();
   }, []);
 
-  const yesterdayDate = (today: string) => {
-    const date = new Date(today);
-    const previousDate = new Date(date.getTime() - 24 * 60 * 60 * 1000);
-
-    return previousDate.toISOString().split("T")[0];
-  };
-
-  function calculatePercentage(value: number, total: number, decimals = 2) {
-    if (total === 0) return 0;
-    const percentage = (value / total) * 100;
-
-    return Number(percentage.toFixed(decimals));
-  }
-
-  async function getYesterdayRate(item: LiveRateData) {
-    try {
-      const yesterdayRateResponse = await fetch(
-        `https://api.frankfurter.dev/v2/rates?quotes=${item.quote}&base=${item.base}&date=${yesterdayDate(item.date)}`,
-      );
-
-      const yesterdayRate: LiveRateData = await yesterdayRateResponse.json();
-
-      const percentageChange = calculatePercentage(
-        Number(item.rate) - Number(yesterdayRate[0].rate),
-        Number(item.rate),
-      );
-
-      return {
-        ...item,
-        percentageChange,
-      };
-    } catch (e) {
-      console.error(e);
-      return null;
-    }
-  }
-
   const fetchCurrentRates = async () => {
     try {
       const response = await fetch("https://api.frankfurter.dev/v2/rates");
@@ -69,17 +26,17 @@ function App() {
       const data = await response.json();
       setCurrentRates(data);
 
-      dispatch(setRatesData(data));
       setNumOfCurrencies(data.length);
 
       const ratesData = await Promise.all(
         data.map(async (item: LiveRateData) => {
-          const yesterdayResp = await getYesterdayRate(item);
-          return yesterdayResp;
+          const percentageChange = await get24hRateChange(item);
+          return { ...item, percentageChange };
         }),
       );
 
       setCurrentRates(ratesData);
+      dispatch(setRatesData(ratesData));
     } catch (e) {
       console.error(e);
     }

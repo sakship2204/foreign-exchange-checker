@@ -4,6 +4,7 @@
   padding: 1rem;
   display: flex;
   flex-direction: column;
+  min-width: fit-content;
 }
 .main {
   gap: 1rem;
@@ -29,6 +30,14 @@ button {
   display: flex;
   gap: 1rem;
 }
+
 .buttons button {
   gap: 0.5rem;
+  border: 1px solid yellowgreen;
+  background-color: var(--background-color-1);
+}
+
+.buttons .favoriteBtn {
+  background-color: yellowgreen;
+  color: var(--invert-color);
 }

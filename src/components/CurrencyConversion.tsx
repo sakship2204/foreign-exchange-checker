@@ -8,11 +8,13 @@ import { useDispatch } from "react-redux";
 
 import { useEffect, useState } from "react";
 import {
-  setConversionRate,
+  setConversionRateAndDate,
   setReceiveValue,
   setSendValue,
   toggleSendReceive,
 } from "../store/converstion";
+import { addToFavoritesData, removeFromFavorites } from "../store/favorite";
+import { get24hRateChange, type LiveRateData } from "../services/util";
 
 export const CurrencyConversion = () => {
   const [star, setStar] = useState(false);
@@ -24,8 +26,14 @@ export const CurrencyConversion = () => {
     (state: any) => state.conversion.conversionRate,
   );
 
+  const date = useSelector((state: any) => state.conversion.rateDate);
+
   const sendCurrency = useSelector((state: any) => state.conversion.send);
   const receiveCurrency = useSelector((state: any) => state.conversion.receive);
+
+  const favoritesData = useSelector(
+    (state: any) => state.favorite.favoriteData,
+  );
 
   const setSendValueFxn = (val: string | number) => {
     dispatch(setSendValue(val));
@@ -43,7 +51,7 @@ export const CurrencyConversion = () => {
 
       const data = await response.json();
 
-      dispatch(setConversionRate(data[0].rate));
+      dispatch(setConversionRateAndDate(data[0]));
     } catch (e) {
       console.error(e);
     }
@@ -51,11 +59,55 @@ export const CurrencyConversion = () => {
 
   useEffect(() => {
     fetchRate();
+
+    setStar(
+      favoritesData.some(
+        (data: LiveRateData) =>
+          data.quote === receiveCurrency && data.base === sendCurrency,
+      ),
+    );
   }, [sendCurrency, receiveCurrency]);
+
+  useEffect(() => {
+    setStar(
+      favoritesData.some(
+        (data: LiveRateData) =>
+          data.quote === receiveCurrency && data.base === sendCurrency,
+      ),
+    );
+  }, [favoritesData]);
 
   useEffect(() => {
     dispatch(setReceiveValue((Number(sendVal) * conversionRate).toFixed(2)));
   }, [conversionRate, sendVal]);
+
+  const handleFavoriting = async () => {
+    if (!star) {
+      const percentageChange = await get24hRateChange({
+        quote: receiveCurrency,
+        base: sendCurrency,
+        date: date,
+        rate: conversionRate,
+      });
+
+      dispatch(
+        addToFavoritesData({
+          quote: receiveCurrency,
+          base: sendCurrency,
+          conversionRate,
+          percentageChange,
+        }),
+      );
+    } else {
+      dispatch(
+        removeFromFavorites({
+          quote: receiveCurrency,
+          base: sendCurrency,
+        }),
+      );
+    }
+    setStar(!star);
+  };
 
   return (
     <>
@@ -83,11 +135,11 @@ export const CurrencyConversion = () => {
 
           <div className={classes.buttons}>
             <button
-              className="customBtn v-center"
-              onClick={() => setStar(!star)}
+              className={`${star && classes.favoriteBtn} customBtn v-center`}
+              onClick={() => handleFavoriting()}
             >
               <img src={star ? Star : Unstar} alt="" />
-              FAVORITE
+              {star ? "FAVORITED" : "FAVORITE"}
             </button>
             <button className="customBtn">LOG CONVERSION</button>
           </div>

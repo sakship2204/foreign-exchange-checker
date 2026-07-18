@@ -1,6 +1,7 @@
 import { useState } from "react";
 import classes from "./AdditionalFunctionalities.module.css";
 import { History } from "./History";
+import { Favorites } from "./Favorites";
 
 export const AdditionalFunctionalities = () => {
   const availableTabs = ["History", "Compare", "Favorite", "Logs"];
@@ -21,6 +22,7 @@ export const AdditionalFunctionalities = () => {
         ))}
       </div>
       {selectedTab === "History" && <History />}
+      {selectedTab === "Favorite" && <Favorites />}
     </>
   );
 };

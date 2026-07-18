@@ -10,7 +10,11 @@ const PercentageIndicator = ({ value }: PercentageIndicatorProps) => {
     <>
       <span style={{ color: `var(${colorClass})` }}>{arrowIcon}</span>
       <span
-        style={{ color: `var(${colorClass})`, marginInlineEnd: "1rem" }}
+        style={{
+          color: `var(${colorClass})`,
+          marginInlineEnd: "1rem",
+          marginInlineStart: "0.3rem",
+        }}
         className="w-fit"
       >{`${value} %`}</span>
     </>
