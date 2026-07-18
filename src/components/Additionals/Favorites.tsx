@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import classes from "./Favorites.module.css";
 import PercentageIndicator from "../PercentageIndicator";
-import StarFilled from "/public/images/icon-star-filled.svg";
+
 import { removeFromFavorites } from "../../store/favorite";
 
 export const Favorites = () => {
@@ -20,8 +20,7 @@ export const Favorites = () => {
   };
   return (
     <>
-      Favorites
-      <div className={classes.container}>
+      <div>
         {favoritesConversion.length === 0 && (
           <div className={classes.empty}>No data to show.</div>
         )}

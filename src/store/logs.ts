@@ -9,16 +9,20 @@ const LogsSlice = createSlice({
     addToLogsData(state, action) {
       state.logsData.push({
         sendVal: action.payload.sendVal,
-        rate: action.payload.rate,
-        timeStamp: action.payload.time,
-        id: Date.now(),
+        receiveVal: action.payload.receiveVal,
+        logTime: Date.now(),
         sendCurrency: action.payload.sendCurrency,
         receiveCurrency: action.payload.receiveCurrency,
       });
+    },
+    removeFromLogsData(state, action) {
+      state.logsData = state.logsData.filter(
+        (data) => data.logTime !== action.payload,
+      );
     },
   },
 });
 
 export default LogsSlice.reducer;
 
-export const actions = LogsSlice.actions;
+export const { addToLogsData, removeFromLogsData } = LogsSlice.actions;

@@ -1,9 +1,3 @@
-.container {
-  padding: 1rem;
-  min-height: 230px;
-  margin-bottom: 20px;
-}
-
 .rows {
   border: 1px solid yellowgreen;
   background-color: var(--background-color-1);
@@ -28,4 +22,14 @@
 .empty {
   text-align: center;
   font-size: 18px;
+}
+
+.time {
+  font-size: 14px;
+  word-spacing: 0.4px;
+}
+
+.deleteBtn {
+  width: 20px;
+  height: 20px;
 }

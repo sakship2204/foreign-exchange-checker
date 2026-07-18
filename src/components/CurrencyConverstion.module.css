@@ -41,3 +41,8 @@ button {
   background-color: yellowgreen;
   color: var(--invert-color);
 }
+
+.disabled {
+  opacity: 0.5;
+  cursor: default;
+}

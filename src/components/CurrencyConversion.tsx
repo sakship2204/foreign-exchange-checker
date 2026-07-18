@@ -15,6 +15,7 @@ import {
 } from "../store/converstion";
 import { addToFavoritesData, removeFromFavorites } from "../store/favorite";
 import { get24hRateChange, type LiveRateData } from "../services/util";
+import { addToLogsData } from "../store/logs";
 
 export const CurrencyConversion = () => {
   const [star, setStar] = useState(false);
@@ -109,6 +110,17 @@ export const CurrencyConversion = () => {
     setStar(!star);
   };
 
+  const addToLoggedData = () => {
+    dispatch(
+      addToLogsData({
+        sendVal,
+        receiveVal,
+        sendCurrency,
+        receiveCurrency,
+      }),
+    );
+  };
+
   return (
     <>
       <div className={classes.container}>
@@ -141,7 +153,13 @@ export const CurrencyConversion = () => {
               <img src={star ? Star : Unstar} alt="" />
               {star ? "FAVORITED" : "FAVORITE"}
             </button>
-            <button className="customBtn">LOG CONVERSION</button>
+            <button
+              className={"customBtn " + (sendVal <= 0 && classes.disabled)}
+              onClick={addToLoggedData}
+              disabled={sendVal <= 0}
+            >
+              LOG CONVERSION
+            </button>
           </div>
         </div>
       </div>

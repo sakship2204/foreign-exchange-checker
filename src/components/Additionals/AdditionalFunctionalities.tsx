@@ -2,6 +2,7 @@ import { useState } from "react";
 import classes from "./AdditionalFunctionalities.module.css";
 import { History } from "./History";
 import { Favorites } from "./Favorites";
+import { Logs } from "./Logs";
 
 export const AdditionalFunctionalities = () => {
   const availableTabs = ["History", "Compare", "Favorite", "Logs"];
@@ -21,8 +22,11 @@ export const AdditionalFunctionalities = () => {
           </span>
         ))}
       </div>
-      {selectedTab === "History" && <History />}
-      {selectedTab === "Favorite" && <Favorites />}
+      <div className={classes.container}>
+        {selectedTab === "History" && <History />}
+        {selectedTab === "Favorite" && <Favorites />}
+        {selectedTab === "Logs" && <Logs />}
+      </div>
     </>
   );
 };

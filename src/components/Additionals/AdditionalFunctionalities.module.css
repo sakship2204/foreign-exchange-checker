@@ -13,3 +13,9 @@
 .selected {
   border-bottom: 3px solid yellowgreen;
 }
+
+.container {
+  padding: 1rem;
+  min-height: 250px;
+  margin-bottom: 30px;
+}
