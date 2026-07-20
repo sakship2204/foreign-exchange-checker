@@ -1,8 +1,12 @@
 type PercentageIndicatorProps = {
   value: string;
+  withoutPercent?: boolean;
 };
 
-const PercentageIndicator = ({ value }: PercentageIndicatorProps) => {
+const PercentageIndicator = ({
+  value,
+  withoutPercent,
+}: PercentageIndicatorProps) => {
   const arrowIcon = Number(value) < 0 ? "▼" : "▲";
   const colorClass = Number(value) < 0 ? "--red-color" : "--green-color";
 
@@ -16,7 +20,7 @@ const PercentageIndicator = ({ value }: PercentageIndicatorProps) => {
           marginInlineStart: "0.3rem",
         }}
         className="w-fit"
-      >{`${value} %`}</span>
+      >{`${value} ${!withoutPercent ? "%" : ""}`}</span>
     </>
   );
 };

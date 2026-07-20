@@ -8,6 +8,7 @@ import { AdditionalFunctionalities } from "./components/Additionals/AdditionalFu
 import { useDispatch, useSelector } from "react-redux";
 import { setRatesData, toggleLightMode } from "./store/converstion";
 import { get24hRateChange, type LiveRateData } from "./services/util";
+import { FaSun, FaMoon } from "react-icons/fa6";
 
 function App() {
   const [currentRates, setCurrentRates] = useState([]);
@@ -48,9 +49,13 @@ function App() {
         <section className="nav-bar">
           <img src={logo} alt="FX Checker" />
           <div className="right-actions">
-            <button onClick={() => dispatch(toggleLightMode())}>
-              toggle theme
-            </button>
+            <div onClick={() => dispatch(toggleLightMode())} tabIndex={1}>
+              {!light ? (
+                <FaSun className="themeBtn" />
+              ) : (
+                <FaMoon className="themeBtn" />
+              )}
+            </div>
             <li>{numOfCurrencies} CURRENCIES</li>
             <li>EOD</li>
             <li>ECB DATA</li>

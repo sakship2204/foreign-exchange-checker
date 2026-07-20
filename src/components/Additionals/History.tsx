@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Chart from "react-google-charts";
 import { useSelector } from "react-redux";
-import { priorDate } from "../../services/util";
+import { calculatePercentage, priorDate } from "../../services/util";
 import { DataCard } from "./DataCard";
 
 const TimeValue = {
@@ -59,6 +59,15 @@ export const History = () => {
     return today;
   };
 
+  const BtnLabels = {
+    day: "1D",
+    week: "1W",
+    month: "1M",
+    "3m": "3M",
+    year: "1Y",
+    "5y": "5Y",
+  };
+
   const chartData = [
     ["Date", `${sendCurrency}/${receiveCurrency}`],
     ...historyData.map((item) => [item.date, Number(item.rate)]),
@@ -96,20 +105,38 @@ export const History = () => {
           <div className="v-center sb">
             <div className="v-center">
               <DataCard title="Open" value={historyData[0].rate} />
-              <DataCard title="Close" value={historyData[0].rate} />
+              <DataCard
+                title="Close"
+                value={historyData[historyData.length - 1].rate}
+              />
 
-              <DataCard title="Change" value={historyData[0].rate} />
+              <DataCard
+                title="Change"
+                value={(
+                  historyData[historyData.length - 1].rate - historyData[0].rate
+                ).toFixed(4)}
+                isPercent
+                withoutPercent
+              />
 
-              <DataCard title="%Change" value={historyData[0].rate} />
+              <DataCard
+                title="%Change"
+                value={calculatePercentage(
+                  historyData[historyData.length - 1].rate -
+                    historyData[0].rate,
+                  historyData[historyData.length - 1].rate,
+                )}
+                isPercent
+              />
             </div>
             <div>
               {Object.values(TimeValue).map((value) => (
                 <button
                   key={value}
                   onClick={() => setTimeSeries(value)}
-                  className="customBtn bg-1"
+                  className={`customBtn bg-1 ${timeSeries === value && "bg-2"}`}
                 >
-                  {value}
+                  {BtnLabels[value]}
                 </button>
               ))}
             </div>
