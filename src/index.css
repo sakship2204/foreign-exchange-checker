@@ -11,6 +11,8 @@
   --invert-color: #000;
   --red-color: red;
   --green-color: green;
+
+  --highlight: yellowgreen;
 }
 
 body {
@@ -22,9 +24,13 @@ body {
   --background-color: #fff;
   --background-color-1: #dbdbdb;
   --background-color-2: #b2b2b2;
-  --background-color-3: #rgb(144, 142, 142);
-  color: #000;
+  --background-color-3: rgb(144, 142, 142);
+  --color: #000;
+
+  --color-1: #2e2e2e;
   --invert-color: #ffffff;
+
+  --highlight: rgb(27, 68, 3);
 }
 
 @font-face {
@@ -51,7 +57,7 @@ body {
   box-shadow: none;
   box-sizing: content-box;
   border: 0.1px solid var(--color-1);
-  color: white;
+  color: var(--color);
   font-size: 14px;
   cursor: pointer;
 }
@@ -59,4 +65,10 @@ body {
 .customBtn:active {
   background-color: var(--background-color-2);
   border: 0.4px solid var(--color-1);
+}
+
+.empty {
+  text-align: center;
+  margin: 3rem;
+  font-size: 18px;
 }

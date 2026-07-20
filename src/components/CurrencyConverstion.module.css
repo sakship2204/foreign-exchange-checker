@@ -33,12 +33,13 @@ button {
 
 .buttons button {
   gap: 0.5rem;
-  border: 1px solid yellowgreen;
+  border: 1px solid var(--highlight);
   background-color: var(--background-color-1);
+  color: var(--color);
 }
 
 .buttons .favoriteBtn {
-  background-color: yellowgreen;
+  background-color: var(--highlight);
   color: var(--invert-color);
 }
 

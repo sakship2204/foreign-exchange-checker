@@ -22,7 +22,7 @@ export const Favorites = () => {
     <>
       <div>
         {favoritesConversion.length === 0 && (
-          <div className={classes.empty}>No data to show.</div>
+          <div className="empty">No data to show.</div>
         )}
         {favoritesConversion.map((data, index) => {
           return (

@@ -24,6 +24,7 @@ const currencyConversionSlice = createSlice({
     ratesData: [],
     rateDate: "",
     compareData: [],
+    lightMode: false,
   },
   reducers: {
     setSend(state, action) {
@@ -64,6 +65,10 @@ const currencyConversionSlice = createSlice({
         CompareCountries.includes(item.quote),
       );
     },
+
+    toggleLightMode(state) {
+      state.lightMode = !state.lightMode;
+    },
   },
 });
 export default currencyConversionSlice;
@@ -77,4 +82,5 @@ export const {
   toggleSendReceive,
   setConversionRateAndDate,
   setCompareData,
+  toggleLightMode,
 } = currencyConversionSlice.actions;

@@ -1,0 +1,13 @@
+.container {
+  padding: 1rem;
+  margin-inline-end: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 1rem;
+  font-size: 14px;
+  background-color: var(--background-color-1);
+}
+
+.value {
+  padding: 1rem 0 0;
+  font-size: 20px;
+}

@@ -5,14 +5,14 @@ import { CurrencyConversion } from "./components/CurrencyConversion";
 import React from "react";
 import PercentageIndicator from "./components/PercentageIndicator";
 import { AdditionalFunctionalities } from "./components/Additionals/AdditionalFunctionalities";
-import { useDispatch } from "react-redux";
-import { setRatesData } from "./store/converstion";
+import { useDispatch, useSelector } from "react-redux";
+import { setRatesData, toggleLightMode } from "./store/converstion";
 import { get24hRateChange, type LiveRateData } from "./services/util";
 
 function App() {
   const [currentRates, setCurrentRates] = useState([]);
   const [numOfCurrencies, setNumOfCurrencies] = useState([]);
-
+  const light = useSelector((state: any) => state.conversion.lightMode);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -44,10 +44,13 @@ function App() {
 
   return (
     <>
-      <div className="app-container">
+      <div className={`app-container ${light && "light-mode"}`}>
         <section className="nav-bar">
           <img src={logo} alt="FX Checker" />
           <div className="right-actions">
+            <button onClick={() => dispatch(toggleLightMode())}>
+              toggle theme
+            </button>
             <li>{numOfCurrencies} CURRENCIES</li>
             <li>EOD</li>
             <li>ECB DATA</li>

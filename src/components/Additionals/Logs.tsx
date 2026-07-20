@@ -2,6 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import classes from "./Favorites.module.css";
 import { removeFromLogsData } from "../../store/logs";
 import DeleteIcon from "/public/images/icon-delete.svg";
+import DeleteFilled from "/public/images/icon-delete.svg";
+
 export const Logs = () => {
   const logsData = useSelector((state: any) => state.logs.logsData);
   const dispatch = useDispatch();
@@ -37,9 +39,7 @@ export const Logs = () => {
   return (
     <>
       <div>
-        {logsData.length === 0 && (
-          <div className={classes.empty}>No data to show.</div>
-        )}
+        {logsData.length === 0 && <div className="empty">No data to show.</div>}
         {[...logsData]
           .sort((a, b) => b.logTime - a.logTime)
           .map((data, index) => {

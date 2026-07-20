@@ -36,6 +36,13 @@ export const yesterdayDate = (today: string) => {
   return previousDate.toISOString().split("T")[0];
 };
 
+export const priorDate = (today: string, index: number = 1) => {
+  const date = new Date(today);
+  const previousDate = new Date(date.getTime() - index * 24 * 60 * 60 * 1000);
+
+  return previousDate.toISOString().split("T")[0];
+};
+
 export type LiveRateData = {
   date: string;
   rate?: string;

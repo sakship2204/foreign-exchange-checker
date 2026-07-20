@@ -1,5 +1,6 @@
 .app-container {
   background-color: var(--background-color);
+  color: var(--color);
 }
 
 .nav-bar {
@@ -7,6 +8,14 @@
   align-items: center;
   justify-content: space-between;
   padding: 1.4rem;
+}
+
+.nav-bar img {
+  background-color: black;
+}
+
+.bg-1 {
+  background-color: var(--background-color-1) !important;
 }
 
 .right-actions {
@@ -18,7 +27,7 @@
 
 .live-market {
   color: var(--invert-color);
-  background-color: rgba(255, 255, 0, 0.945);
+  background-color: var(--highlight);
   padding: 1rem;
   font-weight: bold;
   position: sticky;

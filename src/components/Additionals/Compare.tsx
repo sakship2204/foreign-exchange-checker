@@ -3,7 +3,7 @@ import classes from "./Compare.module.css";
 import Star from "/public/images/icon-star-filled.svg";
 import UnStar from "/public/images/icon-star.svg";
 import { addToFavoritesData, removeFromFavorites } from "../../store/favorite";
-import type { LiveRateData } from "../../services/util";
+import { get24hRateChange, type LiveRateData } from "../../services/util";
 
 export const Compare = () => {
   const sendVal = useSelector((state: any) => state.conversion.sendValue);
@@ -18,12 +18,17 @@ export const Compare = () => {
     });
   };
 
-  const toggleStar = (item: LiveRateData) => {
+  const toggleStar = async (item: LiveRateData) => {
     if (!isFavorite(item.base, item.quote)) {
+      const percentageChange = await get24hRateChange({
+        ...item,
+      });
       dispatch(
         addToFavoritesData({
           base: item.base,
           quote: item.quote,
+          percentageChange,
+          conversionRate: item.rate,
         }),
       );
     } else {
@@ -34,7 +39,7 @@ export const Compare = () => {
   return (
     <>
       {compareData.length == 0 && (
-        <div className={classes.empty}>
+        <div className="empty">
           No comparison available Enter an amount in Send above to see what your
           money is worth in other currencies.
         </div>
