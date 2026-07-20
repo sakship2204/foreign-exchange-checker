@@ -12,8 +12,8 @@ import { FaSun, FaMoon } from "react-icons/fa6";
 import { setProviders } from "./store/providers";
 
 function App() {
-  const [currentRates, setCurrentRates] = useState([]);
-  const [numOfCurrencies, setNumOfCurrencies] = useState([]);
+  const [currentRates, setCurrentRates] = useState<LiveRateData[]>([]);
+  const [numOfCurrencies, setNumOfCurrencies] = useState(0);
   const light = useSelector((state: any) => state.conversion.lightMode);
   const dispatch = useDispatch();
   const provider = useSelector((state: any) => state.provider.providers);
@@ -33,7 +33,7 @@ function App() {
 
       setNumOfCurrencies(data.length);
 
-      const ratesData = await Promise.all(
+      const ratesData: LiveRateData[] = await Promise.all(
         data.map(async (item: LiveRateData) => {
           const percentageChange = await get24hRateChange(item);
           return { ...item, percentageChange };
@@ -82,7 +82,7 @@ function App() {
                     {item.base}/{item.quote}
                   </span>
                   <span>{item.rate}</span>
-                  <PercentageIndicator value={item.percentageChange} />
+                  <PercentageIndicator value={item.percentageChange || 0} />
                 </React.Fragment>
               ))}
             </div>

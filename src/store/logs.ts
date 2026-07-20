@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const LogsSlice = createSlice({
   name: "logs",
   initialState: {
-    logsData: [],
+    logsData: [] as any,
   },
   reducers: {
     addToLogsData(state, action) {
@@ -17,7 +17,7 @@ const LogsSlice = createSlice({
     },
     removeFromLogsData(state, action) {
       state.logsData = state.logsData.filter(
-        (data) => data.logTime !== action.payload,
+        (data: any) => data.logTime !== action.payload,
       );
     },
   },

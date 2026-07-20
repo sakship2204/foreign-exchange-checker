@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from "react-redux";
 import classes from "./Favorites.module.css";
 import { removeFromLogsData } from "../../store/logs";
 import DeleteIcon from "/public/images/icon-delete.svg";
-import DeleteFilled from "/public/images/icon-delete.svg";
 
 export const Logs = () => {
   const logsData = useSelector((state: any) => state.logs.logsData);

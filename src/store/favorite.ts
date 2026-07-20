@@ -1,9 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+export type favoriteType = {
+  base: string;
+  quote: string;
+  conversionRate?: string;
+  percentageChange?: string;
+};
+
 const FavoriteSlice = createSlice({
   name: "favorite",
   initialState: {
-    favoriteData: [],
+    favoriteData: [] as any,
   },
   reducers: {
     addToFavoritesData(state, action) {
@@ -11,7 +18,7 @@ const FavoriteSlice = createSlice({
     },
     removeFromFavorites(state, action) {
       state.favoriteData = state.favoriteData.filter(
-        (data) =>
+        (data: favoriteType) =>
           data.base !== action.payload.base ||
           data.quote !== action.payload.quote,
       );

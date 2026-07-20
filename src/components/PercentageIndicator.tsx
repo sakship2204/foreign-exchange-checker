@@ -1,5 +1,5 @@
 type PercentageIndicatorProps = {
-  value: string;
+  value: string | number;
   withoutPercent?: boolean;
 };
 

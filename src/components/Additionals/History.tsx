@@ -62,7 +62,7 @@ export const History = () => {
     return today;
   };
 
-  const BtnLabels = {
+  const BtnLabels: Record<string, string> = {
     day: "1D",
     week: "1W",
     month: "1M",

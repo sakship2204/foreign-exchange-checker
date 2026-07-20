@@ -4,7 +4,7 @@ export async function get24hRateChange(item: LiveRateData) {
       `https://api.frankfurter.dev/v2/rates?quotes=${item.quote}&base=${item.base}&date=${yesterdayDate(item.date)}`,
     );
 
-    const yesterdayRate: LiveRateData = await yesterdayRateResponse.json();
+    const yesterdayRate: LiveRateData[] = await yesterdayRateResponse.json();
 
     const percentageChange = calculatePercentage(
       Number(item.rate) - Number(yesterdayRate[0].rate),

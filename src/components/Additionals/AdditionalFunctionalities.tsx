@@ -12,7 +12,7 @@ export const AdditionalFunctionalities = () => {
   const favoriteData = useSelector((state: any) => state.favorite.favoriteData);
   const logsData = useSelector((state: any) => state.logs.logsData);
 
-  const numData = (tab) => {
+  const numData = (tab: string) => {
     if (tab === "Favorite") return favoriteData.length;
     if (tab === "Logs") return logsData.length;
 

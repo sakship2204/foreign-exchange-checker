@@ -13,7 +13,7 @@ export const Compare = () => {
   const dispatch = useDispatch();
 
   const isFavorite = (base: string, quote: string) => {
-    return favoriteData.some((item) => {
+    return favoriteData.some((item: LiveRateData) => {
       return item.quote === quote && item.base === base;
     });
   };
@@ -63,7 +63,7 @@ export const Compare = () => {
               </tr>
             </thead>
             <tbody>
-              {compareData.map((item, index) => (
+              {compareData.map((item: LiveRateData, index: string) => (
                 <tr key={index}>
                   <td>
                     {" "}
@@ -74,7 +74,7 @@ export const Compare = () => {
                     />
                     {item.quote}
                   </td>
-                  <td>{(item.rate * sendVal).toFixed(2)}</td>
+                  <td>{(Number(item.rate) * sendVal).toFixed(2)}</td>
                   <td>{item.rate}</td>
                   <td>
                     <button onClick={() => toggleStar(item)}>

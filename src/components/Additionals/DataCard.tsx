@@ -1,12 +1,19 @@
 import PercentageIndicator from "../PercentageIndicator";
 import classes from "./History.module.css";
 
+type DataCardProps = {
+  title: string;
+  value: number | string;
+  isPercent?: boolean;
+  withoutPercent?: boolean;
+};
+
 export const DataCard = ({
   title,
   value,
   isPercent = false,
   withoutPercent = false,
-}) => {
+}: DataCardProps) => {
   return (
     <>
       <div className={classes.container}>

@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import classes from "./Favorites.module.css";
 import PercentageIndicator from "../PercentageIndicator";
 
-import { removeFromFavorites } from "../../store/favorite";
+import { removeFromFavorites, type favoriteType } from "../../store/favorite";
 
 export const Favorites = () => {
   const favoritesConversion = useSelector(
@@ -10,7 +10,7 @@ export const Favorites = () => {
   );
   const dispatch = useDispatch();
 
-  const removeFromFavoritesHandler = (data) => {
+  const removeFromFavoritesHandler = (data: favoriteType) => {
     dispatch(
       removeFromFavorites({
         quote: data.quote,
@@ -24,7 +24,7 @@ export const Favorites = () => {
         {favoritesConversion.length === 0 && (
           <div className="empty">No data to show.</div>
         )}
-        {favoritesConversion.map((data, index) => {
+        {favoritesConversion.map((data: favoriteType, index: number) => {
           return (
             <div className={classes.rows} key={index}>
               <span>
@@ -41,7 +41,7 @@ export const Favorites = () => {
               </span>
               <span>
                 <label>24h change</label>:{" "}
-                <PercentageIndicator value={data.percentageChange} />
+                <PercentageIndicator value={data.percentageChange || 0} />
               </span>
 
               <button

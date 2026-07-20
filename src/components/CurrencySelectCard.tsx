@@ -23,12 +23,12 @@ export const CurrencySelectCard = ({
 
   const dispatch = useDispatch();
 
-  const dropdownRef = useRef(null);
+  const dropdownRef = useRef<any>(null);
 
   const [selected, setSelected] = useState(country);
   const [showDropDown, setShowDropDown] = useState(false);
 
-  const selectionHandler = (val) => {
+  const selectionHandler = (val: string) => {
     setSelected(val);
     dispatch(type === "Send" ? setSend(val) : setReceive(val));
   };
@@ -57,7 +57,9 @@ export const CurrencySelectCard = ({
       <div className={classes.main}>
         <span
           contentEditable={type === "Send"}
-          onInput={(event) => setValue(event.currentTarget.textContent ?? "")}
+          onInput={(event) =>
+            setValue && setValue(event.currentTarget.textContent ?? "")
+          }
           className={`${classes.value} ${type === "Receive" && classes.yellow}`}
         >
           {value}
