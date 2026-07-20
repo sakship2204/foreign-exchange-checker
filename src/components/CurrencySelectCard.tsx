@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import classes from "./CurrencySelectCard.module.css";
-import ChevronDown from "/public/images/icon-chevron-down.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { setReceive, setSend } from "../store/converstion";
+
+const imageBaseUrl = `${import.meta.env.BASE_URL}images`;
 
 type CurrencySelectProps = {
   country: string;
@@ -73,12 +74,15 @@ export const CurrencySelectCard = ({
           >
             {" "}
             <img
-              src={`/public/images/flags/${selected.slice(0, 2).toLowerCase()}.webp`}
+              src={`${imageBaseUrl}/flags/${selected.slice(0, 2).toLowerCase()}.webp`}
               alt={selected.slice(0, 2).toLowerCase()}
               className={classes.imageClass}
             />
             {selected}
-            <img src={ChevronDown} alt={selected.slice(0, 2).toLowerCase()} />
+            <img
+              src={`${imageBaseUrl}/icon-chevron-down.svg`}
+              alt={selected.slice(0, 2).toLowerCase()}
+            />
           </button>
           {showDropDown && (
             <div className={classes.customDropdownContainer}>
@@ -88,7 +92,7 @@ export const CurrencySelectCard = ({
                   onClick={() => selectionHandler(rateItem.quote)}
                 >
                   <img
-                    src={`/public/images/flags/${rateItem.quote.slice(0, 2).toLowerCase()}.webp`}
+                    src={`${imageBaseUrl}/flags/${rateItem.quote.slice(0, 2).toLowerCase()}.webp`}
                     alt={rateItem.quote.slice(0, 2).toLowerCase()}
                     className={classes.imageClass}
                   />

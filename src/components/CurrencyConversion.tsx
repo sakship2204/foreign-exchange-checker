@@ -1,9 +1,5 @@
 import classes from "./CurrencyConverstion.module.css";
-import IconExchange from "/public/images/icon-exchange.svg";
-import IconExchangeVertical from "/public/images/icon-exchange-vertical.svg";
 import { CurrencySelectCard } from "./CurrencySelectCard";
-import Unstar from "/public/images/icon-star.svg";
-import Star from "/public/images/icon-star-filled.svg";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
@@ -18,6 +14,8 @@ import {
 import { addToFavoritesData, removeFromFavorites } from "../store/favorite";
 import { get24hRateChange, type LiveRateData } from "../services/util";
 import { addToLogsData } from "../store/logs";
+
+const imageBaseUrl = `${import.meta.env.BASE_URL}images`;
 
 export const CurrencyConversion = () => {
   const [star, setStar] = useState(false);
@@ -157,12 +155,12 @@ export const CurrencyConversion = () => {
           />
           <button onClick={toggleSendReceiveFxn} className="customBtn">
             <img
-              src={IconExchange}
+              src={`${imageBaseUrl}/icon-exchange.svg`}
               alt="exchange"
               className={classes.exchangeIconHorizontal}
             />
             <img
-              src={IconExchangeVertical}
+              src={`${imageBaseUrl}/icon-exchange-vertical.svg`}
               alt="exchange"
               className={classes.exchangeIconVertical}
             />
@@ -183,7 +181,10 @@ export const CurrencyConversion = () => {
               className={`${star && classes.favoriteBtn} customBtn v-center`}
               onClick={() => handleFavoriting()}
             >
-              <img src={star ? Star : Unstar} alt="" />
+              <img
+                src={`${imageBaseUrl}/${star ? "icon-star-filled.svg" : "icon-star.svg"}`}
+                alt=""
+              />
               {star ? "FAVORITED" : "FAVORITE"}
             </button>
             <button

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import logo from "/public/images/logo.svg";
 import { CurrencyConversion } from "./components/CurrencyConversion";
 import React from "react";
 import PercentageIndicator from "./components/PercentageIndicator";
@@ -10,6 +9,8 @@ import { setRatesData, toggleLightMode } from "./store/converstion";
 import { get24hRateChange, type LiveRateData } from "./services/util";
 import { FaSun, FaMoon } from "react-icons/fa6";
 import { setProviders } from "./store/providers";
+
+const imageBaseUrl = `${import.meta.env.BASE_URL}images`;
 
 function App() {
   const [currentRates, setCurrentRates] = useState<LiveRateData[]>([]);
@@ -51,7 +52,7 @@ function App() {
     <>
       <div className={`app-container ${light && "light-mode"}`}>
         <section className="nav-bar">
-          <img src={logo} alt="FX Checker" />
+          <img src={`${imageBaseUrl}/logo.svg`} alt="FX Checker" />
           <div className="right-actions">
             <div onClick={() => dispatch(toggleLightMode())} tabIndex={1}>
               {!light ? (

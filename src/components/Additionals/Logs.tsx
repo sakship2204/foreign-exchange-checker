@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import classes from "./Favorites.module.css";
 import { removeFromLogsData } from "../../store/logs";
-import DeleteIcon from "/public/images/icon-delete.svg";
+
+const imageBaseUrl = `${import.meta.env.BASE_URL}images`;
 
 export const Logs = () => {
   const logsData = useSelector((state: any) => state.logs.logsData);
@@ -63,7 +64,11 @@ export const Logs = () => {
                   className="customBtn"
                   onClick={() => dispatch(removeFromLogsData(data.logTime))}
                 >
-                  <img src={DeleteIcon} alt="" className={classes.deleteBtn} />
+                  <img
+                    src={`${imageBaseUrl}/icon-delete.svg`}
+                    alt=""
+                    className={classes.deleteBtn}
+                  />
                 </button>
               </div>
             );

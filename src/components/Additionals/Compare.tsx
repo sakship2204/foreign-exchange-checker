@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import classes from "./Compare.module.css";
-import Star from "/public/images/icon-star-filled.svg";
-import UnStar from "/public/images/icon-star.svg";
 import { addToFavoritesData, removeFromFavorites } from "../../store/favorite";
 import { get24hRateChange, type LiveRateData } from "../../services/util";
+
+const imageBaseUrl = `${import.meta.env.BASE_URL}images`;
 
 export const Compare = () => {
   const sendVal = useSelector((state: any) => state.conversion.sendValue);
@@ -68,7 +68,7 @@ export const Compare = () => {
                   <td>
                     {" "}
                     <img
-                      src={`/public/images/flags/${item.quote.slice(0, 2).toLowerCase()}.webp`}
+                      src={`${imageBaseUrl}/flags/${item.quote.slice(0, 2).toLowerCase()}.webp`}
                       alt={item.quote.slice(0, 2).toLowerCase()}
                       className={classes.imageClass}
                     />
@@ -79,7 +79,8 @@ export const Compare = () => {
                   <td>
                     <button onClick={() => toggleStar(item)}>
                       <img
-                        src={isFavorite(item.base, item.quote) ? Star : UnStar}
+                        src={`${imageBaseUrl}/${isFavorite(item.base, item.quote) ? "icon-star-filled.svg" : "icon-star.svg"}`}
+                        alt=""
                       />
                     </button>
                   </td>
