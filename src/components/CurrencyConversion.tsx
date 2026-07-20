@@ -33,6 +33,8 @@ export const CurrencyConversion = () => {
   const sendCurrency = useSelector((state: any) => state.conversion.send);
   const receiveCurrency = useSelector((state: any) => state.conversion.receive);
 
+  const provider = useSelector((state: any) => state.provider.providers);
+
   const favoritesData = useSelector(
     (state: any) => state.favorite.favoriteData,
   );
@@ -40,7 +42,7 @@ export const CurrencyConversion = () => {
   const setCompareDataHandler = async () => {
     try {
       const response = await fetch(
-        `https://api.frankfurter.dev/v2/rates?base=${sendCurrency}`,
+        `https://api.frankfurter.dev/v2/rates?${provider && `providers=${provider}&`}base=${sendCurrency}`,
       );
 
       const data = await response.json();
@@ -66,7 +68,7 @@ export const CurrencyConversion = () => {
   const fetchRate = async () => {
     try {
       const response = await fetch(
-        `https://api.frankfurter.dev/v2/rates?base=${sendCurrency}&quotes=${receiveCurrency}`,
+        `https://api.frankfurter.dev/v2/rates?${provider && `providers=${provider}&`}base=${sendCurrency}&quotes=${receiveCurrency}`,
       );
 
       const data = await response.json();

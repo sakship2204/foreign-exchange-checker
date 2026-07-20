@@ -31,6 +31,8 @@ export const History = () => {
 
   const [timeSeries, setTimeSeries] = useState(TimeValue.day);
 
+  const provider = useSelector((state: any) => state.provider.providers);
+
   const getToday = () => {
     const date = new Date();
     const year = date.getFullYear();
@@ -76,7 +78,7 @@ export const History = () => {
   const fetchHistoryData = async () => {
     try {
       const response = await fetch(
-        `https://api.frankfurter.dev/v2/rates?from=${getFromDate()}&to=${getToday()}&quotes=${receiveCurrency}&base=${sendCurrency}`,
+        `https://api.frankfurter.dev/v2/rates?${provider && `providers=${provider}&`}from=${getFromDate()}&to=${getToday()}&quotes=${receiveCurrency}&base=${sendCurrency}`,
       );
 
       const data = await response.json();

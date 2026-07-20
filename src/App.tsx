@@ -9,20 +9,24 @@ import { useDispatch, useSelector } from "react-redux";
 import { setRatesData, toggleLightMode } from "./store/converstion";
 import { get24hRateChange, type LiveRateData } from "./services/util";
 import { FaSun, FaMoon } from "react-icons/fa6";
+import { setProviders } from "./store/providers";
 
 function App() {
   const [currentRates, setCurrentRates] = useState([]);
   const [numOfCurrencies, setNumOfCurrencies] = useState([]);
   const light = useSelector((state: any) => state.conversion.lightMode);
   const dispatch = useDispatch();
+  const provider = useSelector((state: any) => state.provider.providers);
 
   useEffect(() => {
     fetchCurrentRates();
-  }, []);
+  }, [provider]);
 
   const fetchCurrentRates = async () => {
     try {
-      const response = await fetch("https://api.frankfurter.dev/v2/rates");
+      const response = await fetch(
+        `https://api.frankfurter.dev/v2/rates?${provider && `providers=${provider}&`}`,
+      );
 
       const data = await response.json();
       setCurrentRates(data);
@@ -57,8 +61,15 @@ function App() {
               )}
             </div>
             <li>{numOfCurrencies} CURRENCIES</li>
-            <li>EOD</li>
-            <li>ECB DATA</li>
+            <li onClick={() => dispatch(setProviders(""))} className="pointer">
+              EOD
+            </li>
+            <li
+              onClick={() => dispatch(setProviders("ECB"))}
+              className="pointer"
+            >
+              ECB DATA
+            </li>
           </div>
         </section>
         <section className="nav-bottom">
