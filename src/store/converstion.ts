@@ -1,5 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+export const CompareCountries = [
+  "INR",
+  "EUR",
+  "USD",
+  "ZAR",
+  "VND",
+  "CHD",
+  "NZD",
+  "PED",
+  "CAD",
+  "KWD",
+];
+
 const currencyConversionSlice = createSlice({
   name: "currencyConversion",
   initialState: {
@@ -10,6 +23,7 @@ const currencyConversionSlice = createSlice({
     conversionRate: "",
     ratesData: [],
     rateDate: "",
+    compareData: [],
   },
   reducers: {
     setSend(state, action) {
@@ -44,6 +58,12 @@ const currencyConversionSlice = createSlice({
         state.sendValue,
       ];
     },
+
+    setCompareData(state, action) {
+      state.compareData = action.payload.filter((item: any) =>
+        CompareCountries.includes(item.quote),
+      );
+    },
   },
 });
 export default currencyConversionSlice;
@@ -56,4 +76,5 @@ export const {
   setReceive,
   toggleSendReceive,
   setConversionRateAndDate,
+  setCompareData,
 } = currencyConversionSlice.actions;

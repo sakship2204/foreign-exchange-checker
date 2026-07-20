@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 
 import { useEffect, useState } from "react";
 import {
+  setCompareData,
   setConversionRateAndDate,
   setReceiveValue,
   setSendValue,
@@ -36,8 +37,26 @@ export const CurrencyConversion = () => {
     (state: any) => state.favorite.favoriteData,
   );
 
+  const setCompareDataHandler = async () => {
+    try {
+      const response = await fetch(
+        `https://api.frankfurter.dev/v2/rates?base=${sendCurrency}`,
+      );
+
+      const data = await response.json();
+
+      dispatch(setCompareData(data));
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   const setSendValueFxn = (val: string | number) => {
-    dispatch(setSendValue(val));
+    if (val !== sendVal) {
+      dispatch(setSendValue(val));
+
+      setCompareDataHandler();
+    }
   };
 
   const toggleSendReceiveFxn = () => {
@@ -67,6 +86,8 @@ export const CurrencyConversion = () => {
           data.quote === receiveCurrency && data.base === sendCurrency,
       ),
     );
+
+    if (sendVal != "0") setCompareDataHandler();
   }, [sendCurrency, receiveCurrency]);
 
   useEffect(() => {

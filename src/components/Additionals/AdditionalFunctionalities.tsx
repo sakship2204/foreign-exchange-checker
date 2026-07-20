@@ -3,6 +3,7 @@ import classes from "./AdditionalFunctionalities.module.css";
 import { History } from "./History";
 import { Favorites } from "./Favorites";
 import { Logs } from "./Logs";
+import { Compare } from "./Compare";
 
 export const AdditionalFunctionalities = () => {
   const availableTabs = ["History", "Compare", "Favorite", "Logs"];
@@ -26,6 +27,7 @@ export const AdditionalFunctionalities = () => {
         {selectedTab === "History" && <History />}
         {selectedTab === "Favorite" && <Favorites />}
         {selectedTab === "Logs" && <Logs />}
+        {selectedTab === "Compare" && <Compare />}
       </div>
     </>
   );

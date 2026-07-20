@@ -1,0 +1,37 @@
+.baseContainer {
+  color: var(--color);
+  padding: 1rem;
+  border: 1px solid yellowgreen;
+}
+
+.numRows {
+  font-size: 14px;
+  margin: 1rem;
+}
+
+.empty {
+  text-align: center;
+  margin: 3rem;
+}
+
+.imageClass {
+  width: 20px;
+  height: 20px;
+  margin: auto 0.5rem;
+}
+
+.table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table th,
+.table td {
+  border: 1px solid yellowgreen;
+  text-align: center;
+  padding: 0.5rem;
+}
+
+button {
+  cursor: pointer;
+}
