@@ -8,6 +8,15 @@
   padding: 1rem;
   cursor: pointer;
   font-size: medium;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.numChip {
+  background-color: var(--highlight);
+  color: var(--invert-color);
+  padding: 0 0.3rem;
+  border-radius: 1rem;
 }
 
 .selected {

@@ -4,10 +4,20 @@ import { History } from "./History";
 import { Favorites } from "./Favorites";
 import { Logs } from "./Logs";
 import { Compare } from "./Compare";
+import { useSelector } from "react-redux";
 
 export const AdditionalFunctionalities = () => {
   const availableTabs = ["History", "Compare", "Favorite", "Logs"];
   const [selectedTab, setSelectedTab] = useState(availableTabs[0]);
+  const favoriteData = useSelector((state: any) => state.favorite.favoriteData);
+  const logsData = useSelector((state: any) => state.logs.logsData);
+
+  const numData = (tab) => {
+    if (tab === "Favorite") return favoriteData.length;
+    if (tab === "Logs") return logsData.length;
+
+    return 0;
+  };
 
   return (
     <>
@@ -20,6 +30,9 @@ export const AdditionalFunctionalities = () => {
             onClick={() => setSelectedTab(tab)}
           >
             {tab.toUpperCase()}
+            {numData(tab) > 0 && (
+              <div className={classes.numChip}>{numData(tab)}</div>
+            )}
           </span>
         ))}
       </div>
