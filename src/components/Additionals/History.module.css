@@ -11,3 +11,21 @@
   padding: 1rem 0 0;
   font-size: 20px;
 }
+
+@media (max-width: 600px) {
+  .cards {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .cards div {
+    width: 10rem;
+    margin: 1rem auto;
+  }
+
+  .main {
+    flex-direction: column;
+    width: 100%;
+    margin: 0 0 1rem;
+  }
+}

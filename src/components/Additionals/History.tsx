@@ -3,6 +3,7 @@ import Chart from "react-google-charts";
 import { useSelector } from "react-redux";
 import { calculatePercentage, priorDate } from "../../services/util";
 import { DataCard } from "./DataCard";
+import classes from "./History.module.css";
 
 const TimeValue = {
   day: "day",
@@ -104,8 +105,8 @@ export const History = () => {
         <div className="empty">Loading data...</div>
       ) : (
         <>
-          <div className="v-center sb">
-            <div className="v-center">
+          <div className={"v-center sb " + classes.main}>
+            <div className={"v-center " + classes.cards}>
               <DataCard title="Open" value={historyData[0].rate} />
               <DataCard
                 title="Close"

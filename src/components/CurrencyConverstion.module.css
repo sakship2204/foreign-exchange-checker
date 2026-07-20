@@ -9,6 +9,26 @@
 .main {
   gap: 1rem;
 }
+
+.exchangeIconVertical {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .main {
+    flex-direction: column;
+    padding: 2rem;
+  }
+
+  .exchangeIconHorizontal {
+    display: none;
+  }
+
+  .exchangeIconVertical {
+    display: inline;
+  }
+}
+
 button {
   background-color: var(--background-color-2);
   box-shadow: none;

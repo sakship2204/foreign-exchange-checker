@@ -1,5 +1,6 @@
 import classes from "./CurrencyConverstion.module.css";
 import IconExchange from "/public/images/icon-exchange.svg";
+import IconExchangeVertical from "/public/images/icon-exchange-vertical.svg";
 import { CurrencySelectCard } from "./CurrencySelectCard";
 import Unstar from "/public/images/icon-star.svg";
 import Star from "/public/images/icon-star-filled.svg";
@@ -155,7 +156,16 @@ export const CurrencyConversion = () => {
             setValue={setSendValueFxn}
           />
           <button onClick={toggleSendReceiveFxn} className="customBtn">
-            <img src={IconExchange} alt="exchange" />
+            <img
+              src={IconExchange}
+              alt="exchange"
+              className={classes.exchangeIconHorizontal}
+            />
+            <img
+              src={IconExchangeVertical}
+              alt="exchange"
+              className={classes.exchangeIconVertical}
+            />
           </button>
           <CurrencySelectCard
             country={receiveCurrency}
